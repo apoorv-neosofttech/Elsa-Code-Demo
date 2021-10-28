@@ -1,0 +1,76 @@
+{
+  "$id": "1",
+  "definitionId": "3a8846513a644efd89ac607b2a67dc58",
+  "versionId": "43fa8089fd734be490d9b7d6c3df61dd",
+  "name": "Child1",
+  "displayName": "Child1",
+  "version": 2,
+  "variables": {
+    "$id": "2",
+    "data": {}
+  },
+  "customAttributes": {
+    "$id": "3",
+    "data": {}
+  },
+  "isSingleton": false,
+  "persistenceBehavior": "WorkflowBurst",
+  "deleteCompletedInstances": false,
+  "isPublished": true,
+  "isLatest": true,
+  "activities": [
+    {
+      "$id": "4",
+      "activityId": "e360907f-6661-4e70-8f33-0e4ba4500df5",
+      "type": "WriteHttpResponse",
+      "displayName": "HTTP Response",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "$id": "5",
+          "name": "Content",
+          "syntax": "Liquid",
+          "expressions": {
+            "$id": "6",
+            "Literal": "",
+            "Liquid": "Parent says: \"{{ Input.Message }}\""
+          }
+        },
+        {
+          "$id": "7",
+          "name": "ContentType",
+          "expressions": {
+            "$id": "8",
+            "Literal": "text/html"
+          }
+        },
+        {
+          "$id": "9",
+          "name": "StatusCode",
+          "expressions": {
+            "$id": "10"
+          }
+        },
+        {
+          "$id": "11",
+          "name": "CharSet",
+          "expressions": {
+            "$id": "12"
+          }
+        },
+        {
+          "$id": "13",
+          "name": "ResponseHeaders",
+          "expressions": {
+            "$id": "14"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    }
+  ],
+  "connections": [],
+  "id": "43fa8089fd734be490d9b7d6c3df61dd"
+}

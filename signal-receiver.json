@@ -1,0 +1,101 @@
+{
+  "$id": "1",
+  "definitionId": "7b5f67db3d0c4633a7a5d69c2e8fce3e",
+  "versionId": "17c7d06a177e416197612af9fc59e65d",
+  "name": "SignalReceiver",
+  "displayName": "Signal Receiver",
+  "version": 3,
+  "variables": {
+    "$id": "2",
+    "data": {}
+  },
+  "customAttributes": {
+    "$id": "3",
+    "data": {}
+  },
+  "isSingleton": false,
+  "persistenceBehavior": "WorkflowBurst",
+  "deleteCompletedInstances": false,
+  "isPublished": false,
+  "isLatest": true,
+  "activities": [
+    {
+      "$id": "4",
+      "activityId": "8470ef4c-9c2d-4dd9-831f-19f745a1e209",
+      "type": "SignalReceived",
+      "displayName": "Signal Received",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "$id": "5",
+          "name": "Signal",
+          "expressions": {
+            "$id": "6",
+            "Literal": "Signal-1"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "$id": "7",
+      "activityId": "d1ffcc71-02e5-457c-8e1b-4689a1b1704d",
+      "type": "WriteHttpResponse",
+      "displayName": "HTTP Response",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "$id": "8",
+          "name": "Content",
+          "expressions": {
+            "$id": "9",
+            "Literal": "Signal 1 received!"
+          }
+        },
+        {
+          "$id": "10",
+          "name": "ContentType",
+          "expressions": {
+            "$id": "11",
+            "Literal": "text/html"
+          }
+        },
+        {
+          "$id": "12",
+          "name": "StatusCode",
+          "expressions": {
+            "$id": "13"
+          }
+        },
+        {
+          "$id": "14",
+          "name": "CharSet",
+          "expressions": {
+            "$id": "15"
+          }
+        },
+        {
+          "$id": "16",
+          "name": "ResponseHeaders",
+          "expressions": {
+            "$id": "17"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    }
+  ],
+  "connections": [
+    {
+      "$id": "18",
+      "sourceActivityId": "8470ef4c-9c2d-4dd9-831f-19f745a1e209",
+      "targetActivityId": "d1ffcc71-02e5-457c-8e1b-4689a1b1704d",
+      "outcome": "Done"
+    }
+  ],
+  "id": "17c7d06a177e416197612af9fc59e65d"
+}

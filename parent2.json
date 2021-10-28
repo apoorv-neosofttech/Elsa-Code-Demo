@@ -1,0 +1,217 @@
+{
+  "$id": "1",
+  "definitionId": "34647181ac6541d4a7a30d34f954cf8d",
+  "versionId": "e066c703b97f4350854e62c852ce96a2",
+  "name": "Parent2",
+  "displayName": "Parent2",
+  "version": 3,
+  "variables": {
+    "$id": "2",
+    "data": {}
+  },
+  "customAttributes": {
+    "$id": "3",
+    "data": {}
+  },
+  "isSingleton": false,
+  "persistenceBehavior": "WorkflowBurst",
+  "deleteCompletedInstances": false,
+  "isPublished": true,
+  "isLatest": true,
+  "activities": [
+    {
+      "$id": "4",
+      "activityId": "84cc42b6-f791-4000-a329-6e3520faf110",
+      "type": "HttpEndpoint",
+      "displayName": "HTTP Endpoint",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "$id": "5",
+          "name": "Path",
+          "expressions": {
+            "$id": "6",
+            "Literal": "/parent2"
+          }
+        },
+        {
+          "$id": "7",
+          "name": "Methods",
+          "expressions": {
+            "$id": "8",
+            "Json": "[\"GET\"]"
+          }
+        },
+        {
+          "$id": "9",
+          "name": "ReadContent",
+          "expressions": {
+            "$id": "10"
+          }
+        },
+        {
+          "$id": "11",
+          "name": "TargetType",
+          "expressions": {
+            "$id": "12"
+          }
+        },
+        {
+          "$id": "13",
+          "name": "Authorize",
+          "expressions": {
+            "$id": "14"
+          }
+        },
+        {
+          "$id": "15",
+          "name": "Policy",
+          "expressions": {
+            "$id": "16"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "$id": "17",
+      "activityId": "5bbc988a-827c-424d-86be-ced0de5e9f70",
+      "type": "RunWorkflow",
+      "displayName": "Run Workflow",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "$id": "18",
+          "name": "WorkflowDefinitionId",
+          "syntax": "Liquid",
+          "expressions": {
+            "$id": "19",
+            "Liquid": "{{ \"Child2\" | workflow_definition_id: \"name\" }}"
+          }
+        },
+        {
+          "$id": "20",
+          "name": "Input",
+          "syntax": "JavaScript",
+          "expressions": {
+            "$id": "21",
+            "JavaScript": "({ Message: 'Hello child!' })"
+          }
+        },
+        {
+          "$id": "22",
+          "name": "PossibleOutcomes",
+          "expressions": {
+            "$id": "23"
+          }
+        },
+        {
+          "$id": "24",
+          "name": "Mode",
+          "expressions": {
+            "$id": "25",
+            "Literal": "Blocking"
+          }
+        },
+        {
+          "$id": "26",
+          "name": "TenantId",
+          "expressions": {
+            "$id": "27"
+          }
+        },
+        {
+          "$id": "28",
+          "name": "CorrelationId",
+          "expressions": {
+            "$id": "29"
+          }
+        },
+        {
+          "$id": "30",
+          "name": "ContextId",
+          "expressions": {
+            "$id": "31"
+          }
+        },
+        {
+          "$id": "32",
+          "name": "CustomAttributes",
+          "expressions": {
+            "$id": "33"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "$id": "34",
+      "activityId": "2f522499-5d14-4b1d-a36d-a74a04823b12",
+      "type": "WriteHttpResponse",
+      "displayName": "HTTP Response",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "$id": "35",
+          "name": "Content",
+          "syntax": "Liquid",
+          "expressions": {
+            "$id": "36",
+            "Liquid": "Message received from child {{ Input.WorkflowInstanceId }}: {{ Input.WorkflowOutput.Message }}"
+          }
+        },
+        {
+          "$id": "37",
+          "name": "ContentType",
+          "expressions": {
+            "$id": "38",
+            "Literal": "text/html"
+          }
+        },
+        {
+          "$id": "39",
+          "name": "StatusCode",
+          "expressions": {
+            "$id": "40"
+          }
+        },
+        {
+          "$id": "41",
+          "name": "CharSet",
+          "expressions": {
+            "$id": "42"
+          }
+        },
+        {
+          "$id": "43",
+          "name": "ResponseHeaders",
+          "expressions": {
+            "$id": "44"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    }
+  ],
+  "connections": [
+    {
+      "$id": "45",
+      "sourceActivityId": "84cc42b6-f791-4000-a329-6e3520faf110",
+      "targetActivityId": "5bbc988a-827c-424d-86be-ced0de5e9f70",
+      "outcome": "Done"
+    },
+    {
+      "$id": "46",
+      "sourceActivityId": "5bbc988a-827c-424d-86be-ced0de5e9f70",
+      "targetActivityId": "2f522499-5d14-4b1d-a36d-a74a04823b12",
+      "outcome": "Done"
+    }
+  ],
+  "id": "e066c703b97f4350854e62c852ce96a2"
+}
