@@ -8,6 +8,7 @@ using Elsa.Activities.Http.Models;
 using Elsa.Activities.Primitives;
 using Elsa.Activities.Temporal;
 using Elsa.Builders;
+using Elsa.Server.Activities;
 using NodaTime;
 
 namespace Elsa.Server
@@ -23,6 +24,8 @@ namespace Elsa.Server
                     .WithMethod(HttpMethod.Post.Method)
                     .WithReadContent())
                 .SetVariable("Document", context => context.GetInput<HttpRequestModel>()!.Body)
+                //Custom Activity
+                .Then<ChangeBody>()
                 .SendEmail(activity => activity
                     .WithSender("workflow@acme.com")
                     .WithRecipient("josh@acme.com")
@@ -31,7 +34,8 @@ namespace Elsa.Server
                     {
                         var document = context.GetVariable<dynamic>("Document")!;
                         var author = document!.Author;
-                        return $"Document from {author.Name} received for review.<br><a href=\"{context.GenerateSignalUrl("Approve")}\">Approve</a> or <a href=\"{context.GenerateSignalUrl("Reject")}\">Reject</a>";
+                        var body = document!.Body;
+                        return $"{body}. Document from {author.Name} received for review.<br><a href=\"{context.GenerateSignalUrl("Approve")}\">Approve</a> or <a href=\"{context.GenerateSignalUrl("Reject")}\">Reject</a>";
                     }))
                 .WriteHttpResponse(
                     HttpStatusCode.OK,

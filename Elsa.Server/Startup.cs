@@ -1,5 +1,6 @@
 using Elsa.Persistence.EntityFramework.Core.Extensions;
 using Elsa.Persistence.EntityFramework.Sqlite;
+using Elsa.Server.Activities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +32,8 @@ namespace Elsa.Server
                     .AddHttpActivities(elsaSection.GetSection("Server").Bind)
                     .AddEmailActivities(elsaSection.GetSection("Smtp").Bind)
                     .AddQuartzTemporalActivities()
+                    //Custom Activity Registration
+                    .AddActivity<ChangeBody>()
                     .AddWorkflowsFrom<Startup>()
                     .AddWorkflow<DocumentApprovalWorkflow>()
                     
