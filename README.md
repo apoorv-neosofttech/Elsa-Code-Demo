@@ -27,4 +27,8 @@ Steps to run and test workflows
 }
 ```
 
-Reference: https://elsa-workflows.github.io/elsa-core/docs/guides/guides-document-approval
+References: 
+
+https://elsa-workflows.github.io/elsa-core/docs/guides/guides-document-approval
+
+https://elsa-workflows.github.io/elsa-core/docs/extensibility/extensibility-custom-activities
